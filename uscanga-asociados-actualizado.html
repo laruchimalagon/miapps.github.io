@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uscanga y Asociados — Grupo Forense</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0c1120;
+    --navy-mid: #141c2f;
+    --gold: #b8922b;
+    --gold-light: #d4aa4c;
+    --gold-pale: #f0d88a;
+    --crimson: #8b1a4a;
+    --crimson-light: #a8215a;
+    --cream: #f5f0e8;
+    --cream-dim: #ddd5c4;
+    --text-muted: #8a9bb5;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--navy);
+    color: var(--cream);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0.9rem 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(12,17,32,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(184,146,43,0.2);
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+  }
+  .nav-logo img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid rgba(184,146,43,0.4);
+  }
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--crimson-light);
+    line-height: 1.1;
+  }
+  .nav-brand small {
+    display: block;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 400;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.8rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+    padding: 8rem 8% 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 70% at 70% 50%, rgba(184,146,43,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-left { position: relative; z-index: 1; }
+  .hero-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .hero-tag::before { content: ''; width: 40px; height: 1px; background: var(--gold); opacity: 0.6; }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 5vw, 5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--cream);
+    margin-bottom: 0.3rem;
+  }
+  .hero h1 .brand-name {
+    font-style: italic;
+    color: var(--crimson-light);
+    display: block;
+  }
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--gold-light);
+    letter-spacing: 0.05em;
+    margin-bottom: 1.8rem;
+  }
+  .hero-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin-bottom: 1.8rem;
+    opacity: 0.6;
+  }
+  .hero-desc {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--cream-dim);
+    line-height: 1.9;
+    margin-bottom: 2.5rem;
+    max-width: 520px;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--crimson);
+    color: #fff;
+    padding: 0.85rem 2rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--crimson-light); }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--gold-light);
+    padding: 0.85rem 2rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(184,146,43,0.4);
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-logo-wrap {
+    position: relative;
+    width: 380px;
+    height: 380px;
+  }
+  .hero-logo-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    border: 1px solid rgba(184,146,43,0.15);
+  }
+  .hero-logo-wrap::after {
+    content: '';
+    position: absolute;
+    inset: -40px;
+    border-radius: 50%;
+    border: 1px solid rgba(184,146,43,0.08);
+  }
+  .hero-logo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--navy-mid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--gold);
+  }
+
+  /* SECTION COMMON */
+  section {
+    padding: 8rem 5%;
+    position: relative;
+  }
+  .section-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 0.8rem;
+    color: var(--cream);
+  }
+  .section-title em {
+    font-style: italic;
+    color: var(--crimson-light);
+  }
+  .gold-rule {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin-bottom: 2rem;
+    opacity: 0.6;
+  }
+
+  /* ABOUT */
+  .about {
+    background: rgba(20, 28, 47, 0.5);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+  }
+  .about-card {
+    padding: 2rem;
+    background: rgba(184,146,43,0.05);
+    border: 1px solid rgba(184,146,43,0.15);
+    border-radius: 8px;
+  }
+  .about-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 0.8rem;
+  }
+  .about-card p {
+    font-size: 0.9rem;
+    color: var(--cream-dim);
+    line-height: 1.8;
+  }
+
+  /* PILLARS */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .pillar {
+    padding: 2.5rem 2rem;
+    background: linear-gradient(135deg, rgba(12,17,32,0.8) 0%, rgba(20,28,47,0.8) 100%);
+    border: 1px solid rgba(184,146,43,0.2);
+    border-radius: 8px;
+    text-align: center;
+  }
+  .pillar-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+  }
+  .pillar h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 0.8rem;
+  }
+  .pillar p {
+    font-size: 0.85rem;
+    color: var(--cream-dim);
+    line-height: 1.7;
+  }
+
+  /* SERVICES */
+  .services {
+    background: rgba(20, 28, 47, 0.5);
+  }
+  .services-intro {
+    font-size: 0.95rem;
+    color: var(--cream-dim);
+    max-width: 700px;
+    margin-bottom: 3rem;
+    line-height: 1.9;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .service-card {
+    padding: 2.5rem;
+    background: rgba(184,146,43,0.05);
+    border: 1px solid rgba(184,146,43,0.15);
+    border-radius: 8px;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .service-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(184,146,43,0.4);
+  }
+  .service-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 0.8rem;
+  }
+  .service-card p {
+    font-size: 0.9rem;
+    color: var(--cream-dim);
+    line-height: 1.8;
+  }
+
+  /* CORE OF BUSINESS */
+  .cob-header {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 3rem;
+    align-items: start;
+    margin-bottom: 4rem;
+  }
+  .cob-intro p {
+    font-size: 0.95rem;
+    color: var(--cream-dim);
+    line-height: 1.9;
+    margin-bottom: 1.2rem;
+  }
+  .cob-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  .cob-card {
+    padding: 2.5rem;
+    background: rgba(184,146,43,0.05);
+    border: 1px solid rgba(184,146,43,0.15);
+    border-radius: 8px;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .cob-card.highlight {
+    border-color: var(--crimson);
+    background: rgba(139, 26, 74, 0.1);
+  }
+  .cob-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(184,146,43,0.4);
+  }
+  .cob-icon {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .cob-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 0.8rem;
+  }
+  .cob-desc {
+    font-size: 0.9rem;
+    color: var(--cream-dim);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+  .cob-note {
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+    background: rgba(184,146,43,0.2);
+    color: var(--gold);
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* PROTOCOLS */
+  .protocols {
+    background: rgba(20, 28, 47, 0.5);
+  }
+  .protocols-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .protocols-header {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 3rem;
+    align-items: start;
+    margin-bottom: 4rem;
+  }
+  .protocols-intro {
+    font-size: 0.95rem;
+    color: var(--cream-dim);
+    line-height: 1.9;
+  }
+  .protocols-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+  .proto-card {
+    padding: 2.5rem;
+    background: rgba(184,146,43,0.05);
+    border: 1px solid rgba(184,146,43,0.15);
+    border-radius: 8px;
+    transition: transform 0.3s, border-color 0.3s;
+    position: relative;
+  }
+  .proto-card.featured {
+    border-color: var(--crimson);
+    background: rgba(139, 26, 74, 0.1);
+    grid-column: 1 / -1;
+  }
+  .proto-card.ai-card {
+    background: rgba(212, 170, 76, 0.08);
+    border-color: var(--gold-light);
+  }
+  .proto-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(184,146,43,0.4);
+  }
+  .proto-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    opacity: 0.4;
+    margin-bottom: 0.5rem;
+  }
+  .proto-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    padding: 0.5rem 1rem;
+    background: rgba(184,146,43,0.15);
+    color: var(--gold);
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+  .proto-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 0.8rem;
+  }
+  .proto-desc {
+    font-size: 0.9rem;
+    color: var(--cream-dim);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+  .proto-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 0.35rem 0.7rem;
+    background: rgba(212, 170, 76, 0.2);
+    color: var(--gold-pale);
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* CONTACT */
+  .contact {
+    background: rgba(20, 28, 47, 0.5);
+  }
+  .contact-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .contact-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-top: 2rem;
+  }
+  .info-block {
+    padding: 1.8rem;
+    background: rgba(184,146,43,0.05);
+    border: 1px solid rgba(184,146,43,0.15);
+    border-radius: 8px;
+  }
+  .info-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+  .info-value {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 0.4rem;
+  }
+  .info-sub {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .wa-btn {
+    display: inline-block;
+    margin-right: 0.8rem;
+    margin-top: 0.6rem;
+    padding: 0.5rem 1rem;
+    background: rgba(76, 175, 80, 0.2);
+    color: #4CAF50;
+    border: 1px solid rgba(76, 175, 80, 0.4);
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: background 0.3s;
+  }
+  .wa-btn:hover {
+    background: rgba(76, 175, 80, 0.3);
+  }
+  .no-calls {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.8rem;
+    font-style: italic;
+  }
+
+  /* FORM */
+  .contact-form {
+    padding: 2.5rem;
+    background: rgba(184,146,43,0.05);
+    border: 1px solid rgba(184,146,43,0.15);
+    border-radius: 8px;
+  }
+  .form-group {
+    margin-bottom: 1.8rem;
+  }
+  .form-label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+  .form-input, .form-select, .form-textarea {
+    width: 100%;
+    padding: 0.85rem;
+    background: rgba(12,17,32,0.6);
+    border: 1px solid rgba(184,146,43,0.2);
+    border-radius: 4px;
+    color: var(--cream);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    transition: border-color 0.3s;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(12,17,32,0.8);
+  }
+  .form-textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  .form-select {
+    cursor: pointer;
+  }
+  .form-select option {
+    background: var(--navy);
+    color: var(--cream);
+  }
+  .btn-submit {
+    width: 100%;
+    padding: 1rem;
+    background: var(--crimson);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .btn-submit:hover {
+    background: var(--crimson-light);
+  }
+  .btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  .form-message {
+    margin-top: 0.8rem;
+    padding: 0.8rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    text-align: center;
+    display: none;
+  }
+  .form-message.success {
+    display: block;
+    background: rgba(76, 175, 80, 0.2);
+    color: #4CAF50;
+    border: 1px solid rgba(76, 175, 80, 0.4);
+  }
+  .form-message.error {
+    display: block;
+    background: rgba(244, 67, 54, 0.2);
+    color: #F44336;
+    border: 1px solid rgba(244, 67, 54, 0.4);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 3rem 5%;
+    background: rgba(12,17,32,0.8);
+    border-top: 1px solid rgba(184,146,43,0.2);
+    text-align: center;
+  }
+  .footer-copy {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+  .footer-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--crimson-light);
+    letter-spacing: 0.05em;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; padding: 6rem 5% 4rem; }
+    .hero-right { display: none; }
+    .hero-logo-wrap { width: 280px; height: 280px; }
+    .cob-header, .protocols-header { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 0.65rem; }
+    section { padding: 4rem 5%; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#inicio">
+    <div class="nav-logo" style="background: var(--crimson); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--gold);">U&A</div>
+    <div class="nav-brand">
+      Uscanga y Asociados
+      <small>Grupo Forense</small>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#acerca">Acerca de</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#protocolos">Protocolos</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-left">
+    <p class="hero-tag">Especialistas forenses</p>
+    <h1>
+      Análisis Pericial
+      <span class="brand-name">Uscanga y Asociados</span>
+    </h1>
+    <p class="hero-tagline">verdad analizada, justicia sustentada…</p>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">
+      Somos un equipo de expertos en psicología forense, evaluación pericial y análisis criminológico. Brindamos dictámenes de alta rigurosidad científica ante tribunales nacionales e internacionales, respaldados por metodologías validadas y certificadas por autoridades judiciales.
+    </p>
+    <div class="hero-cta">
+      <a href="#contacto" class="btn-primary">Solicitar consulta</a>
+      <a href="#servicios" class="btn-secondary">Ver servicios</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-logo-wrap">
+      <div class="hero-logo">U&A</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="acerca">
+  <p class="section-label">Quiénes somos</p>
+  <h2 class="section-title">Excelencia en Análisis <em>Forense</em></h2>
+  <div class="gold-rule"></div>
+  
+  <div class="about-grid">
+    <div class="about-card">
+      <h3>Certificación SCJN</h3>
+      <p>Certificados por la Suprema Corte de Justicia de la Nación en Psicología Forense Especializada en la Niñez, garantizando el más alto estándar legal y científico.</p>
+    </div>
+    <div class="about-card">
+      <h3>Metodologías Internacionales</h3>
+      <p>Aplicamos protocolos reconocidos a nivel mundial (Istanbul Protocol, NICHD, SVA) validados científicamente para evaluaciones complejas.</p>
+    </div>
+    <div class="about-card">
+      <h3>Independencia Profesional</h3>
+      <p>Operamos bajo principios de objetividad, ética y confidencialidad. Nuestros dictámenes son imparciales y fundamentados en evidencia científica.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top: 4rem; font-family: 'Cormorant Garamond'; font-size: 1.8rem; color: var(--gold-light); margin-bottom: 2rem;">Pilares de nuestra práctica</h3>
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-icon">🔬</div>
+      <h3>Rigor Científico</h3>
+      <p>Cada evaluación se fundamenta en metodología validada y análisis estadístico robusto.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">⚖️</div>
+      <h3>Ética Profesional</h3>
+      <p>Respetamos confidencialidad absoluta y estándares deontológicos internacionales.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">🎯</div>
+      <h3>Claridad Experta</h3>
+      <p>Nuestros dictámenes son accesibles y persuasivos para cualquier tribunal.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">🌍</div>
+      <h3>Alcance Global</h3>
+      <p>Experiencia en contextos nacionales e internacionales, incluyendo evaluaciones a distancia.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="servicios">
+  <p class="section-label">Nuestras especialidades</p>
+  <h2 class="section-title">Servicios <em>Periciales</em></h2>
+  <div class="gold-rule"></div>
+  <p class="services-intro">
+    Ofrecemos un portafolio integral de servicios forenses adaptados a contextos judiciales, penitenciarios, de salud mental y civiles. Cada evaluación es diseñada específicamente para responder las preguntas legales que plantea su caso.
+  </p>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <h3>Peritaje Psicológico Forense</h3>
+      <p>Evaluaciones compresivas de competencias psicológicas, personalidad y funcionamiento cognitivo relevante para procesos judiciales.</p>
+    </div>
+    <div class="service-card">
+      <h3>Evaluación de Credibilidad</h3>
+      <p>Análisis científico de la validez y consistencia de testimonios mediante protocolos internacionalmente validados.</p>
+    </div>
+    <div class="service-card">
+      <h3>Atención Especializada a Menores</h3>
+      <p>Intervención no revictimizante con niñas, niños y adolescentes. Certificación SCJN en Psicología Forense de la Niñez.</p>
+    </div>
+    <div class="service-card">
+      <h3>Evaluación Médico-Legal</h3>
+      <p>Documentación forense de lesiones, síntomas y secuelas conforme a estándares internacionales de salud mental.</p>
+    </div>
+    <div class="service-card">
+      <h3>Análisis de Capacidades Parentales</h3>
+      <p>Evaluación psicológica de aptitud parental y dinámicas familiares en asuntos de custodia, guarda y filiación.</p>
+    </div>
+    <div class="service-card">
+      <h3>Contrainformes y Metaperitaje</h3>
+      <p>Análisis crítico de dictámenes previos con rigor metodológico para sustentar posiciones alternativas en juicio.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CORE OF BUSINESS -->
+<section class="cob" id="core">
+  <div class="cob-header">
+    <div>
+      <p class="section-label">Núcleo de nuestro trabajo</p>
+      <h2 class="section-title">Especialidades <em>Clínicas</em></h2>
+      <div class="gold-rule"></div>
+    </div>
+    <div class="cob-intro">
+      <p>
+        Nuestras evaluaciones especializadas responden a cuestionarios precisos de naturaleza clínica y legal. Combinamos técnicas de entrevista, pruebas psicométricas, análisis documentales y observación conductual para una comprensión integral del caso.
+      </p>
+    </div>
+  </div>
+
+  <div class="cob-grid">
+
+    <div class="cob-card">
+      <span class="cob-icon">👥</span>
+      <div class="cob-title">Violencia Doméstica e Intrafamiliar</div>
+      <p class="cob-desc">Evaluación de dinámicas abusivas, ciclos de violencia y secuelas psicológicas en víctimas y agresores. Análisis contextual para procedimientos civiles y penales.</p>
+      <span class="cob-note">Protocolo validado</span>
+    </div>
+
+    <div class="cob-card">
+      <span class="cob-icon">🚨</span>
+      <div class="cob-title">Abuso Sexual Infantil</div>
+      <p class="cob-desc">Evaluación especializada de menores con historial de abuso sexual. Protocolo NICHD-R para entrevistas forenses no sugestionables y obtención de información confiable.</p>
+      <span class="cob-note">SCJN certificado</span>
+    </div>
+
+    <div class="cob-card">
+      <span class="cob-icon">⚖️</span>
+      <div class="cob-title">Capacidad Mental y Testamentos</div>
+      <p class="cob-desc">Evaluación retrospectiva de competencia mental en momentos críticos. Análisis de capacidad para otorgar disposiciones testamentarias válidas.</p>
+      <span class="cob-note">Jurisprudencia aplicada</span>
+    </div>
+
+    <div class="cob-card">
+      <span class="cob-icon">💼</span>
+      <div class="cob-title">Bullying, Mobbing y Acoso</div>
+      <p class="cob-desc">Documentación de dinámicas de hostigamiento en contextos escolares y laborales. Evaluación de daño psicológico y secuelas emocionales.</p>
+      <span class="cob-note">Entorno escolar y laboral</span>
+    </div>
+
+    <div class="cob-card">
+      <span class="cob-icon">🧠</span>
+      <div class="cob-title">Evaluación Neuropsicológica Forense</div>
+      <p class="cob-desc">Análisis de funcionamiento cognitivo, afectaciones neuropsicológicas y capacidades en contextos de daño cerebral o neurodegeneración.</p>
+      <span class="cob-note">Instrumento validado</span>
+    </div>
+
+    <div class="cob-card highlight">
+      <span class="cob-icon">⚠️</span>
+      <div class="cob-title">Evaluación de Peligrosidad</div>
+      <p class="cob-desc">Evaluamos el grado de peligrosidad de individuos en contextos judicales, penitenciarios o de salud mental, mediante instrumentos validados internacionalmente para la estimación del riesgo.</p>
+      <span class="cob-note">Instrumento validado</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROTOCOLS -->
+<section class="protocols" id="protocolos">
+  <div class="protocols-inner">
+    <div class="protocols-header">
+      <div>
+        <p class="section-label">Especialidades metodológicas</p>
+        <h2 class="section-title">Protocolos <em>y Especialidades</em></h2>
+        <div class="gold-rule"></div>
+      </div>
+      <p class="protocols-intro">
+        Aplicamos las metodologías forenses más avanzadas y reconocidas a nivel internacional. Cada protocolo es seleccionado con base en el caso específico, garantizando la solidez científica del dictamen pericial ante cualquier tribunal nacional e internacional.
+      </p>
+    </div>
+
+    <div class="protocols-grid">
+
+      <div class="proto-card featured">
+        <div class="proto-num">01</div>
+        <span class="proto-badge">✦ Certificación — Suprema Corte de Justicia de la Nación</span>
+        <div class="proto-name">Psicología Forense Especializada en la Niñez</div>
+        <p class="proto-desc">Certificación otorgada por la Suprema Corte de Justicia de la Nación. Evaluación forense de menores de edad con los más altos estándares legales y científicos del sistema judicial mexicano. Intervención especializada, no revictimizante, para niñas, niños y adolescentes inmersos en procesos judiciales.</p>
+        <span class="proto-tag">Certificación SCJN</span>
+      </div>
+
+      <div class="proto-card">
+        <div class="proto-num">02</div>
+        <div class="proto-name">Psicología del Testimonio</div>
+        <p class="proto-desc">Evaluación científica de la credibilidad del relato. Análisis de consistencia, coherencia interna y marcadores cognitivos que distinguen el testimonio genuino del fabricado.</p>
+      </div>
+
+      <div class="proto-card">
+        <div class="proto-num">03</div>
+        <div class="proto-name">Protocolo de Estambul</div>
+        <p class="proto-desc">Documentación médica y psicológica de víctimas de tortura y tratos crueles. Manual de Naciones Unidas adoptado internacionalmente como estándar obligatorio.</p>
+      </div>
+
+      <div class="proto-card">
+        <div class="proto-num">04</div>
+        <div class="proto-name">Entrevista de Investigación</div>
+        <p class="proto-desc">Técnicas avanzadas de entrevista estructurada para obtener información confiable y ética, minimizando la sugestionabilidad y maximizando la precisión del relato.</p>
+      </div>
+
+      <div class="proto-card">
+        <div class="proto-num">05</div>
+        <div class="proto-name">Evaluación de Credibilidad en Menores</div>
+        <p class="proto-desc">Protocolos especializados adaptados al desarrollo cognitivo y emocional de niñas, niños y adolescentes. Técnicas validadas para población infantil en contextos judiciales.</p>
+      </div>
+
+      <div class="proto-card">
+        <div class="proto-num">06</div>
+        <div class="proto-name">Análisis de Expresiones Faciales</div>
+        <p class="proto-desc">Estudio científico de microexpresiones y emociones. Identificación de congruencia emocional en el relato mediante análisis facial sistemático y estandarizado.</p>
+      </div>
+
+      <div class="proto-card">
+        <div class="proto-num">07</div>
+        <div class="proto-name">Detección de Mentiras</div>
+        <p class="proto-desc">Evaluación basada en evidencia científica. Análisis de indicadores verbales, paraverbales y no verbales con metodología validada empíricamente, sin uso de polígrafo.</p>
+      </div>
+
+      <div class="proto-card">
+        <div class="proto-num">08</div>
+        <div class="proto-name">Escuela Principios Méndez</div>
+        <p class="proto-desc">Formación en metodología forense de vanguardia. Marco conceptual para la evaluación pericial psicológica bajo principios de independencia, objetividad y ética.</p>
+      </div>
+
+      <div class="proto-card">
+        <div class="proto-num">09</div>
+        <div class="proto-name">Protocolo SVA</div>
+        <p class="proto-desc">Statement Validity Assessment. Análisis de la validez del relato mediante 19 criterios científicos estandarizados, internacionalmente reconocidos para evaluación de testimonio.</p>
+      </div>
+
+      <div class="proto-card">
+        <div class="proto-num">10</div>
+        <div class="proto-name">Protocolo NICHD-R</div>
+        <p class="proto-desc">Entrevista forense estructurada para menores. Protocolo del National Institute of Child Health and Human Development, revisado y validado para entornos hispanohablantes.</p>
+      </div>
+
+      <div class="proto-card ai-card">
+        <div class="proto-num">11</div>
+        <div class="proto-name">Prevención del Abuso Sexual Infantil con IA</div>
+        <p class="proto-desc">Aplicación de inteligencia artificial en la detección y prevención del abuso sexual infantil. Tecnología de vanguardia al servicio de la protección integral de la niñez.</p>
+        <span class="proto-tag">Tecnología de vanguardia</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+  <div class="contact-inner">
+    <div>
+      <p class="section-label">Contáctenos</p>
+      <h2 class="section-title">Solicite una <em>consulta</em></h2>
+      <div class="gold-rule"></div>
+      <div class="contact-info">
+        <div class="info-block">
+          <div class="info-label">WhatsApp</div>
+          <div class="info-value">55 1232 8677</div>
+          <div class="info-value">222 874 8013</div>
+          <div style="margin-top:0.7rem;">
+            <a class="wa-btn" href="https://wa.me/525512328677" target="_blank">WhatsApp 1</a>
+            <a class="wa-btn" href="https://wa.me/522228748013" target="_blank">WhatsApp 2</a>
+          </div>
+          <div class="no-calls">No aceptamos llamadas telefónicas</div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">Correo electrónico</div>
+          <div class="info-value" style="font-size:0.95rem;">asociadosuscanga@gmail.com</div>
+          <div class="info-sub">Respondemos en un máximo de 24 horas hábiles</div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">Atención presencial y en línea</div>
+          <div class="info-value">Ciudad de México</div>
+          <div class="info-sub">Con previa cita. También ofrecemos evaluaciones y consultas en línea a toda la República.</div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">Confidencialidad</div>
+          <div class="info-value" style="font-size:0.88rem; line-height:1.7;">Toda consulta e información compartida está protegida por estricta confidencialidad profesional y ética pericial.</div>
+        </div>
+      </div>
+    </div>
+    <form class="contact-form" id="contactForm">
+      <div class="form-group">
+        <label class="form-label">Nombre completo</label>
+        <input type="text" class="form-input" id="nombre" placeholder="Su nombre" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">WhatsApp o correo</label>
+        <input type="text" class="form-input" id="contacto" placeholder="+52 55 xxxx xxxx / correo@dominio.com" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tipo de servicio</label>
+        <select class="form-select" id="servicio" required>
+          <option value="">— Seleccione —</option>
+          <option>Verificación de credibilidad</option>
+          <option>Peritaje psicológico forense</option>
+          <option>Evaluación médico-legal</option>
+          <option>Atención a menores</option>
+          <option>Contrainformes / metaperitaje</option>
+          <option>Capacidades parentales / custodia</option>
+          <option>Confiabilidad laboral</option>
+          <option>Bullying, mobbing o acoso</option>
+          <option>Capacitación forense</option>
+          <option>Teoría del caso</option>
+          <option>Capacidad mental / testamentos</option>
+          <option>Evaluación de peligrosidad</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Descripción del caso</label>
+        <textarea class="form-textarea" id="mensaje" placeholder="Describa brevemente su caso o consulta..."></textarea>
+      </div>
+      <button class="btn-submit" type="submit" id="submitBtn">Enviar por WhatsApp</button>
+      <div class="form-message" id="formMessage"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p class="footer-copy">&copy; 2025 Grupo Forense "Uscanga y Asociados" — Todos los derechos reservados.</p>
+  <p class="footer-tagline">verdad analizada, justicia sustentada…</p>
+  <div class="footer-logo">"U &amp; A" Forense</div>
+</footer>
+
+<script>
+  const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw8OGgDSWu00Hqr2-2keBaUabKvmH7pb5NKckzvuAfa6uv_1xaICoUD0uFa3BTxTUQ0VQ/exec';
+
+  async function handleForm(e) {
+    e.preventDefault();
+    
+    const form = document.getElementById('contactForm');
+    const nombre = document.getElementById('nombre').value || 'Sin nombre';
+    const contacto = document.getElementById('contacto').value || '';
+    const servicio = document.getElementById('servicio').value || 'No especificado';
+    const mensaje = document.getElementById('mensaje').value || '';
+    const submitBtn = document.getElementById('submitBtn');
+    const formMessage = document.getElementById('formMessage');
+    
+    // Desactivar botón
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando...';
+    
+    try {
+      // Enviar a Google Sheets
+      const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({
+          nombre: nombre,
+          contacto: contacto,
+          servicio: servicio,
+          mensaje: mensaje
+        })
+      });
+
+      // Mostrar mensaje de éxito
+      formMessage.textContent = '✓ Consulta guardada. Abriendo WhatsApp...';
+      formMessage.className = 'form-message success';
+      
+      // Pequeña pausa antes de abrir WhatsApp
+      setTimeout(() => {
+        // Abrir WhatsApp con el mensaje
+        const texto = encodeURIComponent(
+          `Hola, me comunico desde el sitio web de Uscanga y Asociados.\n\n` +
+          `*Nombre:* ${nombre}\n` +
+          `*Contacto:* ${contacto}\n` +
+          `*Servicio requerido:* ${servicio}\n` +
+          `*Descripción:* ${mensaje}`
+        );
+        window.open(`https://wa.me/525512328677?text=${texto}`, '_blank');
+        
+        // Limpiar formulario
+        form.reset();
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar por WhatsApp';
+        
+        // Limpiar mensaje después de 3 segundos
+        setTimeout(() => {
+          formMessage.className = 'form-message';
+        }, 3000);
+      }, 1000);
+      
+    } catch (error) {
+      console.error('Error:', error);
+      formMessage.textContent = '✗ Hubo un error. Por favor, intente nuevamente.';
+      formMessage.className = 'form-message error';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Enviar por WhatsApp';
+    }
+  }
+
+  // Asignar evento al formulario
+  document.getElementById('contactForm').addEventListener('submit', handleForm);
+
+  // Animación de scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.proto-card, .service-card, .cob-card, .pillar, .about-card').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = `opacity 0.6s ease ${(i % 3) * 0.09}s, transform 0.6s ease ${(i % 3) * 0.09}s`;
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
